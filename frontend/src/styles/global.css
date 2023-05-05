@@ -1,0 +1,22 @@
+/* 
+// Identification
+// Zhi Lin Li, 2131146
+// Winter 2023 
+// Programming Techniques 
+// Professor Robert Vincent 
+// Final Project 
+// Due: 2023-05-05
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+body {
+  margin: 0px;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'DM Sans', sans-serif;
+}

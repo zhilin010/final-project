@@ -1,0 +1,29 @@
+/* 
+// Identification
+// Zhi Lin Li, 2131146
+// Winter 2023 
+// Programming Techniques 
+// Professor Robert Vincent 
+// Final Project 
+// Due: 2023-05-05
+*/
+
+.noteCard { 
+    background-color: rgb(39, 56, 98);
+    border-radius: 10px;
+    color: white;
+}
+
+.cardText { 
+    white-space: pre-line;
+}
+
+.cardTitle {
+    font-weight: bold; 
+    font-size: 2rem;
+}
+
+.cardBody {
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, #000, 60%, transparent);
+}
