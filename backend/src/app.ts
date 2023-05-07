@@ -33,7 +33,6 @@ app.use(session({
     cookie: {
         maxAge: 60 * 60 * 1000, // 1 hour
     },
-    rolling: true, // reset the maxAge on every request
     store: MongoStore.create({
         mongoUrl: env.MONGO_CONNECTION_STRING,
     })

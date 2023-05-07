@@ -10,6 +10,7 @@ import { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import UserModel from "../models/user";
 import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
     // This function gets the authenticated user from the database
@@ -59,7 +60,7 @@ export const signUp: RequestHandler<unknown, unknown, SignUpBody, unknown> = asy
             password: hashedPassword
         });
 
-        req.session.userId = newUser.id; // set the userId in the session to the new user's id
+        req.session.userId = newUser._id as mongoose.Types.ObjectId; // set the userId in the session to the new user's id
 
         res.status(201).json(newUser); // return the new user
 
@@ -84,7 +85,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
             throw createHttpError(400, "Parameters missing.");
         }
 
-        const user = await UserModel.findOne({username: username}).select("+password +email").exec(); // select the password and email fields
+        const user = await UserModel.findOne({username: username}).select('+password +email').exec(); // select the password and email fields
 
         if (!user) {
             // if the user doesn't exist
@@ -97,7 +98,8 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
             throw createHttpError(401, "Wrong username or password.");
         }
 
-        req.session.userId = user.id // set the userId in the session to the user's id
+        // set the user id to the session
+        req.session.userId = user._id as mongoose.Types.ObjectId;
         res.status(201).json(user); // return the user
 
         //DEBUG 
