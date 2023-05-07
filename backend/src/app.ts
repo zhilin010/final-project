@@ -40,6 +40,7 @@ app.use(session({
 }));
 
 app.use(cors({
+    origin: 'https://lustrous-gelato-12b510.netlify.app', // Allow the frontend to access this server
     credentials: true, // Allow credentials (session cookies, in this case)
 })); // enable CORS
 
