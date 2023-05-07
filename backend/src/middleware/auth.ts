@@ -11,6 +11,7 @@ import createHttpError from "http-errors";
 
 export const requiresAuth: RequestHandler = (req, res, next) => {
     if (req.session.userId) {
+        console.log(req.session.userId)
         // if the user is logged in 
         next(); // continue with the next middleware
     } else { 

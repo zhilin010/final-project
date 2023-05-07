@@ -99,6 +99,9 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
 
         req.session.userId = user.id // set the userId in the session to the user's id
         res.status(201).json(user); // return the user
+
+        //DEBUG 
+        console.log(req.session.userId);
     } catch (error) {
         next(error);
     }
