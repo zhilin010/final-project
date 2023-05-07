@@ -22,9 +22,11 @@ export async function fetchData(input: RequestInfo, init?: RequestInit) {
     }
 }
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 export async function getLoggedInUser(): Promise<User> {
     // This function returns the logged in user.
-    const response = await fetchData("/api/users/", { method: "GET" });
+    const response = await fetchData(backendURL + "/api/users/", { method: "GET" });
     return response.json();
 }
 
@@ -36,7 +38,7 @@ export interface SignUpCredentials {
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
     // This function signs up a new user.
-    const response = await fetchData("/api/users/signup", {
+    const response = await fetchData(backendURL + "/api/users/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -53,7 +55,7 @@ export interface LogInCredentials {
 
 export async function logIn(credentials: LogInCredentials): Promise<User> {
     // This function logs in a user.
-    const response = await fetchData("/api/users/login", {
+    const response = await fetchData(backendURL + "/api/users/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -70,7 +72,7 @@ export async function logOut() {
 
 export async function fetchNotes(): Promise<Note[]> {
     // This function fetches the notes from the backend.
-    const response = await fetchData("/api/dailynotes", { method: "GET" });  
+    const response = await fetchData(backendURL + "/api/dailynotes", { method: "GET" });  
     return response.json();
 }
 
@@ -81,7 +83,7 @@ export interface NoteInput {
 
 export async function createNote(note: NoteInput): Promise<Note> { 
     // This function creates a new note.
-    const response = await fetchData("/api/dailynotes", 
+    const response = await fetchData(backendURL + "/api/dailynotes", 
     {
         method: "POST",
         headers: {
@@ -94,11 +96,11 @@ export async function createNote(note: NoteInput): Promise<Note> {
 
 export async function deleteNote(noteId: string) { 
     // This function deletes a note.
-    await fetchData("/api/dailynotes/" + noteId, { method: "DELETE" });
+    await fetchData(backendURL + "/api/dailynotes/" + noteId, { method: "DELETE" });
 }
 
 export async function expandNote(noteId: string) {
     // This function expands a note.
-    const response = await fetchData("/api/dailynotes/" + noteId, {method: "GET"})
+    const response = await fetchData(backendURL + "/api/dailynotes/" + noteId, {method: "GET"})
     return response.json();
 }
