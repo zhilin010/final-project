@@ -62,7 +62,7 @@ export const signUp: RequestHandler<unknown, unknown, SignUpBody, unknown> = asy
 
         req.session.userId = newUser._id as mongoose.Types.ObjectId; // set the userId in the session to the new user's id
 
-        res.status(201).json(newUser); // return the new user
+        res.status(200).json(newUser); // return the new user
 
     } catch (error) {
         next(error);
