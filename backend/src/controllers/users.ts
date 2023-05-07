@@ -101,7 +101,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         res.status(201).json(user); // return the user
 
         //DEBUG 
-        console.log(req.session.userId);
+        console.log("LOGIN SUCCESS" + req.session.userId);
     } catch (error) {
         next(error);
     }
