@@ -7,6 +7,7 @@
 // Due: 2023-05-05
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from './styles/Notespage.module.css';
 import { Container } from 'react-bootstrap';
 import NavBar from './components/NavBar';
 import SignUpModal from './components/SignUpModal';
@@ -14,10 +15,11 @@ import { User } from './models/user';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import * as NotesApi from './network/notes_api';
-import styles from './styles/Notespage.module.css';
-import NotesPageLoggedInView from './components/NotesPageLoggedInView';
-import NotesPageLoggedOutView from './components/NotesPageLoggedOutView';
 import LogInModal from './components/LogInModal';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NotesPage from './pages/NotesPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
 
 
   return (
+    <BrowserRouter>
     <div>
       <NavBar
         loggedInUser={loggedInUser}
@@ -49,14 +52,20 @@ function App() {
         onLogInClicked={() => setShowLogInModal(true)} // if log in clicked, show log in modal
         onLogOutSuccessful={() => setLoggedInUser(null)} // if log out clicked, set logged in user to null
       />
-      <Container className={styles.notesPage}>
-        <>
-        {loggedInUser
-        ? <NotesPageLoggedInView />
-        : <NotesPageLoggedOutView />}  
-        {/* if logged in user exists, show logged in view, else show logged out view */}
-        </>
+      
+      <Container className={styles.pageContainer}>
+        <Routes>
+          <Route 
+            path='/'
+            element={<NotesPage loggedInUser={loggedInUser} />}
+          />
+          <Route 
+            path='/*'
+            element={<NotFoundPage />}
+          />
+        </Routes>
       </Container>
+
       {showSignUpModal &&
           <SignUpModal
             onDismiss={() => setShowSignUpModal(false)}
@@ -78,6 +87,7 @@ function App() {
           />
         }
     </div>
+    </BrowserRouter>
   );
 }
 
