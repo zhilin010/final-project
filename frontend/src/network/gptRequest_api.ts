@@ -10,9 +10,11 @@ export interface GPTRequest {
     messages: string[],
 }
 
+const BACKEND_URL = process.env.BACKEND_URL;
+
 export async function createGPTRequest(gptRequest: GPTRequest): Promise<string> {
     // This function sends a POST request to the backend server, which then sends a POST request to the OpenAI API.
-    const response = await fetch("/api/gptRequest",
+    const response = await fetch(BACKEND_URL + "/api/gptRequest",
         {
             method: "POST",
             headers: {
