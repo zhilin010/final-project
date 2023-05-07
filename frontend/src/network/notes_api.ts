@@ -40,6 +40,7 @@ export async function signUp(credentials: SignUpCredentials): Promise<User> {
     // This function signs up a new user.
     const response = await fetchData(backendURL + "/api/users/signup", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
@@ -57,6 +58,7 @@ export async function logIn(credentials: LogInCredentials): Promise<User> {
     // This function logs in a user.
     const response = await fetchData(backendURL + "/api/users/login", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },

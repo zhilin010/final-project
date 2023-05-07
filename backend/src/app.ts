@@ -21,10 +21,6 @@ import cors from "cors";
 
 const app = express();
 
-app.use(cors({
-    credentials: true, // Allow credentials (session cookies, in this case)
-})); // enable CORS
-
 app.use(morgan("dev")); // morgan package to log all accessed endpoints
 
 // middleware to create notes
@@ -42,6 +38,10 @@ app.use(session({
         mongoUrl: env.MONGO_CONNECTION_STRING,
     })
 }));
+
+app.use(cors({
+    credentials: true, // Allow credentials (session cookies, in this case)
+})); // enable CORS
 
 app.use("/api/users", userRoutes) // get users from api/users and forward to userRoutes
 

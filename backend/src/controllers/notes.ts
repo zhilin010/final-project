@@ -53,7 +53,7 @@ export const getNote: RequestHandler = async (req, res, next) => {
             throw createHttpError(401, "You cannot access this note");
         }
 
-        res.status(201).json(note); // return the note
+        res.status(200).json(note); // return the note
     } catch (error) {
         // forward error to the error handler middleware
         next(error);
