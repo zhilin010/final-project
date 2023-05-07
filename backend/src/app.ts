@@ -22,7 +22,6 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-    origin: 'https://lustrous-gelato-12b510.netlify.app/', // allow access from this origin
     credentials: true, // Allow credentials (session cookies, in this case)
 })); // enable CORS
 
